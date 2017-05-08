@@ -3,9 +3,12 @@ FROM ubuntu:xenial
 ENV HOME /root
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN apt-get update && apt-get install -y vim gcc gmake sqlite3 pkg-config
+RUN apt-get update && apt-get install -y vim gcc make sqlite3 pkg-config libnl-genl-3-dev libssl-dev && \
+    apt-get clean
 
 ADD run.sh /run.sh
-ADD aircrack-ng-1.2-rc4.tar.gz  /aircrack-ng-1.2-rc4.tar.gz 
+ADD aircrack-ng-1.2-rc4.tar.gz  /
+
+WORKDIR /work/
 
 CMD ["/run.sh"]
